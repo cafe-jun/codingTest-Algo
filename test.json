@@ -1,0 +1,32 @@
+{
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "ap-northeast-2",
+      "eventTime": "2022-06-24T05:53:06.449Z",
+      "eventName": "ObjectCreated:CompleteMultipartUpload",
+      "userIdentity": { "principalId": "AUG5IT7DIJ3XM" },
+      "requestParameters": { "sourceIPAddress": "121.131.249.169" },
+      "responseElements": {
+        "x-amz-request-id": "S29YEXCP67SF5DP4",
+        "x-amz-id-2": "NwevFaQJX3KR/Z4Ks/xYn8XPbxbE+dHMhpeOIH72I44Ja++xyrfX5IqGJYqY2VKsyceSVXik5ZOkS6z3cvNuGGDGCBn++UWs"
+      },
+      "s3": {
+        "s3SchemaVersion": "1.0",
+        "configurationId": "b15f8754-fe3c-474e-b995-b4dcb693ec69",
+        "bucket": {
+          "name": "dev-repl-exhibition",
+          "ownerIdentity": { "principalId": "AUG5IT7DIJ3XM" },
+          "arn": "arn:aws:s3:::dev-repl-exhibition"
+        },
+        "object": {
+          "key": "abc/EcoMice.zip",
+          "size": 629961488,
+          "eTag": "7679c0403cbe5612c1abf755e3106b02-37",
+          "sequencer": "0062B5511C739AD3E8"
+        }
+      }
+    }
+  ]
+}
