@@ -2,9 +2,6 @@
 # n-lef < x < right -n 의 범위에 대한 규칙을 꼭 찾아야한다 
 
 
-from itertools import cycle
-
-
 def solution(n, left, right):
     answer = []
     move = left
