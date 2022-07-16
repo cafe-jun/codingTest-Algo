@@ -1,15 +1,26 @@
-from datetime import datetime
+from collections import deque
+from datetime import datetime, timedelta
+import heapq
+import time
 
 
 def solution(lines: list[str]):
     answer = 0
+    stl = []
     # 우선순위 큐
     # 시간 더하기 가장 빠른 시간을 앞으로
-    test_time = lines[0].split(' ')
+    for line in lines:
+        date1 = line
+        dtt = date1.split(' ')
+        dm = dtt[0]+' '+dtt[1]
+        dt = datetime.strptime(dm, "%Y-%m-%d %H:%M:%S.%f")
+        dt_mil = float(dtt[2][:-1])*1000
+        start_timestamp = dt-timedelta(milliseconds=dt_mil)
+        end_timestamp = dt
+        heapq.heappush(stl, (start_timestamp.timestamp() *
+                       1000+1, end_timestamp.timestamp()*1000))
+    max_cnt = 0
 
-    time_obj = datetime.strptime(
-        ''.join(test_time[0], test_time[1]), "%y%m%d %H:%M:%S.%f")
-    print(time_obj)
     return answer
 
 
