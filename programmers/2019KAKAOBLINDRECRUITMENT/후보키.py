@@ -2,7 +2,7 @@
 from copy import copy
 from itertools import combinations
 
-
+# 잘푼 풀이를 찾아보자 
 def solution(relation:list[str]):
     answer = 0
     global relations
