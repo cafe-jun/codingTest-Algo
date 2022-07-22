@@ -31,23 +31,10 @@ def solution(n: int, t: int, m: int, timetable: list[str]):
     # 양끝과 중간일때 다름
     # 중간일때는 중간에 탈수가 있으면
     tmp_time = 0
-    stack = []
     if len(chart[end_minute]) < m:
         tmp_time = end_minute
     else:
         tmp_time = chart[end_minute][-1]-1
-
-    # for ch in reversed(chart.keys()):
-    #     if len(chart[ch]) < m:
-    #         if len(stack) < 1:
-    #             tmp_time = ch
-    #         else:
-    #             # 바로 이전에 있던거에서
-    #             tmp_time = chart[stack.pop()][0]
-    #         break
-    #     stack.append(ch)
-    # else:
-    #     tmp_time = chart[540][0]-1
 
     hour, minute = divmod(tmp_time, 60)
     answer += str(hour).rjust(2, '0') + ':'
@@ -55,8 +42,8 @@ def solution(n: int, t: int, m: int, timetable: list[str]):
     return answer
 
 
-# print(solution(10, 25, 1, ["09:00", "09:10", "09:20", "09:30", "09:40", "09:50",
-#                            "10:00", "10:10", "10:20", "10:30", "10:40", "10:50"]) == "10:29")
+print(solution(10, 25, 1, ["09:00", "09:10", "09:20", "09:30", "09:40", "09:50",
+                           "10:00", "10:10", "10:20", "10:30", "10:40", "10:50"]) == "10:29")
 print(solution(10, 1, 5, ["09:00", "09:00",
       "09:00", "09:00", "09:00"]) == "09:09")
 print(solution(1, 1, 5, ["08:00", "08:01", "08:02", "08:03"]) == "09:00")
