@@ -1,8 +1,5 @@
 
 
-from collections import deque
-
-
 
 def solution(board, skill):
     answer = 0
@@ -19,18 +16,16 @@ def solution(board, skill):
          new_board[r2+1][c2+1] += value
 
     else:
-        # 위에서 아래 
+        # 위에서 아래 부분 합
         for c in range(len(board[0])):
             for r in range(len(board)):
                 new_board[r+1][c] += new_board[r][c]
-        # 왼쪽에서 오른쪽 
+        # 왼쪽에서 오른쪽 부분 합 
         for r in range(len(board)):
             for c in range(len(board[0])):
                 new_board[r][c+1] += new_board[r][c] 
        
         
-                
-
     for i in range(len(board)):
         for j in range(len(board[0])):
             board[i][j] += new_board[i][j]
