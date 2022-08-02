@@ -9,68 +9,102 @@
 # 라이언이 우승할 방법이 없는 경우, return 할 정수 배열의 길이는 1입니다.
 # 라이언이 어떻게 화살을 쏘든 라이언의 점수가 어피치의 점수보다 낮거나 같으면 [-1]을 return 해야 합니다.
 
-import heapq
+
 from itertools import combinations
 
 
-def solution(n: int, info: list[int]):
-    answer = []
-    win_list = []
-    m = [i for i in range(11)]
-    # 10을 최소로 이기는 경우
-    for i in range(1, 11):
-        for combin in combinations(m, i):
-            result = check_win(info, combin, n)
-            if result[1] != [-1]:
-                if not win_list:
-                    win_list.append(result)
-                if (-1)*win_list[0][0] < (-1)*result[0]:
-                    win_list.clear()
-                    win_list.append(result)
-                elif win_list[0][0] == result[0]:
-                    win_list.append(result)
-    if not win_list:
-        return [-1]
-    min_answer = win_list[0][1]
-    for win_num in win_list:
-        target_list = win_num[1]
-        for i in range(10, -1, -1):
-            if min_answer[i] > target_list[i]:
-                break
-            elif min_answer[i] < target_list[i]:
-                min_answer = target_list
-                break
-    answer = min_answer
-    return answer
+def solution(n, info):
+    global answer, result
+
+    def score(ryan):
+        s = 0
+        for i in range(11):
+            if ryan[i] == info[i] == 0:
+                continue
+            if ryan[i] > info[i]:
+                s += 10 - i
+            else:
+                s -= 10 - i
+        return s
+
+    def dfs(idx, left, ryan):
+        global answer, result
+        if idx == -1 and left:
+            return
+        if left == 0:
+            s = score(ryan)
+            if result < s:
+                answer = ryan[:]
+                result = s
+            return
+        for i in range(left, -1, -1):
+            ryan[idx] = i
+            dfs(idx-1, left-i, ryan)
+            ryan[idx] = 0
+
+    answer = [0 for _ in range(11)]
+    result = 0
+    dfs(10, n, [0 for _ in range(11)])
+    return answer if result != 0 else [-1]
+
+# def solution(n: int, info: list[int]):
+#     answer = []
+#     win_list = []
+#     m = [i for i in range(11)]
+#     # 10을 최소로 이기는 경우
+#     for i in range(1, 11):
+#         for combin in combinations(m, i):
+#             result = check_win(info, combin, n)
+#             if result[1] != [-1]:
+#                 if not win_list:
+#                     win_list.append(result)
+#                 if (-1)*win_list[0][0] < (-1)*result[0]:
+#                     win_list.clear()
+#                     win_list.append(result)
+#                 elif win_list[0][0] == result[0]:
+#                     win_list.append(result)
+#     if not win_list:
+#         return [-1]
+#     min_answer = win_list[0][1]
+#     for win_num in win_list:
+#         target_list = win_num[1]
+#         for i in range(10, -1, -1):
+#             if min_answer[i] > target_list[i]:
+#                 break
+#             elif min_answer[i] < target_list[i]:
+#                 min_answer = target_list
+#                 break
+#     answer = min_answer
+#     return answer
 
 
-def check_win(apeach, target, n):
-    arrow = n
-    iron = [0]*11
-    combi_list = sorted(list(target), reverse=True)
-    for score in combi_list:
-        apeach_ts = apeach[10-score]
-        if arrow < apeach_ts + 1:
-            iron[10 - score] += arrow
-            break
-        iron[10 - score] = apeach_ts + 1
-        arrow -= (apeach_ts + 1)
-    else:
-        iron[10-score] += arrow
-    apeach_score = 0
-    iron_score = 0
-    for i in range(11):
-        if apeach[10-i] == 0 and iron[10-i] == 0:
-            continue
-        if apeach[10-i] < iron[10-i]:
-            iron_score += (i)
-        else:
-            apeach_score += (i)
-    else:
-        if iron_score > apeach_score:
-            return ((-1)*abs(iron_score-apeach_score), iron)
-        else:
-            return (0, [-1])
+# def check_win(apeach, target, n):
+#     arrow = n
+#     iron = [0]*11
+#     combi_list = sorted(list(target), reverse=True)
+#     for score in combi_list:
+#         apeach_ts = apeach[10-score]
+#         if arrow < apeach_ts + 1:
+#             iron[10 - score] += arrow
+#             break
+#         iron[10 - score] = apeach_ts + 1
+#         arrow -= (apeach_ts + 1)
+#     else:
+#         iron[10-score] += arrow
+#     apeach_score = 0
+#     iron_score = 0
+#     for i in range(11):
+#         if apeach[10-i] == 0 and iron[10-i] == 0:
+#             continue
+#         if apeach[10-i] < iron[10-i]:
+#             iron_score += (i)
+#         else:
+#             apeach_score += (i)
+#     else:
+#         if iron_score > apeach_score:
+#             return ((-1)*abs(iron_score-apeach_score), iron)
+#         else:
+#             return (0, [-1])
 
 
 print(solution(5, [2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0])
