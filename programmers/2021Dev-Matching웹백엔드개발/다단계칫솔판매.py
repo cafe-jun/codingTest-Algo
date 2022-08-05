@@ -1,5 +1,7 @@
 def solution(enroll, referral, seller, amount):
     answer = []
+#     for i in enumerateamount:
+#           pass
     return answer
 
 
