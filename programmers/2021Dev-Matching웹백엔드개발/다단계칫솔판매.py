@@ -120,6 +120,40 @@ def solution(enroll, referral, seller, amount):
         answer[idx_list[name]] -= price//10
     return answer
 
+# from collections import defaultdict
+# def solution(enroll, referral, seller, amount):
+#     dadangae_list = defaultdict(list)
+#     answer = []
+#     for i in range(len(enroll)):
+#         if referral[i] !='-':
+#             dadangae_list[enroll[i]] = [referral[i],0]
+#         else :
+#             dadangae_list[enroll[i]] = ['center',0]
+
+#     referral_stack = []
+#     for i in range(len(seller)):
+#         tmp_money = amount[i]*10 #상납할 금액
+#         dadangae_list[seller[i]][1] += (amount[i]*100-tmp_money)
+#         referral_stack.append(seller[i])
+#         while referral_stack:
+#             child = referral_stack.pop()
+#             parent = dadangae_list[child][0]
+#             if parent == 'center':
+#                 break
+#             elif tmp_money < 10  :
+#                 dadangae_list[parent][1]+= tmp_money
+#                 break
+#             else :
+#                 referral_stack.append(parent)
+#                 dadangae_list[parent][1]+=(tmp_money - tmp_money//10)
+#                 tmp_money = tmp_money//10
+
+#     for i in enroll:
+#         answer.append(dadangae_list[i][1])
+
+
+#     return answer
+
 
 print(solution(["john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"], ["-", "-", "mary", "edward", "mary", "mary",
       "jaimie", "edward"], ["young", "john", "tod", "emily", "mary"], [12, 4, 2, 5, 10]) == [360, 958, 108, 0, 450, 18, 180, 1080])
