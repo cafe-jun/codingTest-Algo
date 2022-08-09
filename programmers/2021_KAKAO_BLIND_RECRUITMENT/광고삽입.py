@@ -1,5 +1,6 @@
 def solution(play_time, adv_time, logs):
     answer = ''
+    print('')
     return answer
 
 
