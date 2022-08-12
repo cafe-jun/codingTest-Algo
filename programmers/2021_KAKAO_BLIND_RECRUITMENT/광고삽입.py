@@ -1,10 +1,6 @@
 def solution(play_time, adv_time, logs):
     answer = ''
-    print('')
-    print('광고삽입')
-    print('광고삽입')
-    print('광고삽입')
-    print('광고삽입')
+
     return answer
 
 
