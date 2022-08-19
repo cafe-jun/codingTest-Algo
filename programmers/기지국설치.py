@@ -12,6 +12,7 @@ def solution(n, stations, w):
         for i in range(1, w+1):
             if current+w+i < station - w:
                 pass
+                print('기지국 설치')
 
     print('이분탐색 활용')
     return answer
