@@ -15,37 +15,30 @@ def solution(rows, columns, queries):
         x1, y1, x2, y2 = query
 
         tmp_board = deepcopy(board)
-
+        tmp_answer = set()
         min_num = 1e9
         x_point = x1-1
         y_point = y1-1
         for i in range(y2-y1):
-            board[x_point][y_point+1] = tmp_board[x_point][y_point]
-            if tmp_board[x_point][y_point] < min_num:
-                min_num = tmp_board[x_point][y_point]
-            board[x_point][y_point-1] = tmp_board[x_point][y_point]
-            if tmp_board[x_point][y_point] < min_num:
-                min_num = tmp_board[x_point][y_point]
-            y_point += 1
-
-        for j in range(x2-x1):
-            board[x_point+1][y_point] = tmp_board[x_point][y_point]
-            if tmp_board[x_point][y_point] < min_num:
-                min_num = tmp_board[x_point][y_point]
-            board[x_point-1][y_point] = tmp_board[x_point][y_point]
-            if tmp_board[x_point][y_point] < min_num:
-                min_num = tmp_board[x_point][y_point]
+            board[x_point][y_point+1],board[x_point][y_point] = board[x_point][y_point],board[x_point][y_point+1]
+            tmp_answer.add(tmp_board[x_point][y_point])
+            y_point -= 1
+        for i in range(x2-x1):
+            tmp_board[x_point][y_point],board[x_point+1][y_point] = tmp_board[x_point][y_point],board[x_point+1][y_point]
+            tmp_answer.add(tmp_board[x_point][y_point])
             x_point -= 1
-
+        for j in range(y2-y1):
+            tmp_board[x_point][y_point],board[x_point][y_point-1] = board[x_point][y_point-1],tmp_board[x_point][y_point]
+            tmp_answer.add(tmp_board[x_point][y_point])
+            y_point += 1
+        for j in range(x2-x1):
+            tmp_board[x_point][y_point],board[x_point-1][y_point] = board[x_point-1][y_point],tmp_board[x_point][y_point]
+            tmp_answer.add(tmp_board[x_point][y_point])
+            x_point += 1
+        min_num = min(tmp_answer)
         answer.append(min_num)
     return answer
 
-
-print(
-    solution(6, 6, [[2, 2, 5, 4], [3, 3, 6, 6], [5, 1, 6, 3]]) == [8, 10, 25])
-print(solution(3, 3, [[1, 1, 2, 2], [1, 2, 2, 3], [
-      2, 1, 3, 2], [2, 2, 3, 3]]) == [1, 1, 5, 3])
-print(solution(100, 97, [[1, 1, 100, 97]]) == [1])
 
 # moveX = [0, 1, 0, -1]
 # moveY = [1, 0, -1, 0]
@@ -84,10 +77,24 @@ print(solution(100, 97, [[1, 1, 100, 97]]) == [1])
 #     return (matrix, min(mins))
 
 
-# def solution(rows, columns, queries):
-#     matrix = make_matrix(rows, columns)
-#     result = []
-#     for q in queries:
-#         matrix, MIN = rotate(q, matrix)
-#         result.append(MIN)
-#     return result
+def solution(rows, columns, queries):
+    matrix = make_matrix(rows, columns)
+    result = []
+    for q in queries:
+        matrix, MIN = rotate(q, matrix)
+        result.append(MIN)
+    return result
+
+
+
+print(
+    solution(6, 6, [[2, 2, 5, 4], [3, 3, 6, 6], [5, 1, 6, 3]]) == [8, 10, 25])
+print(solution(3, 3, [[1, 1, 2, 2], [1, 2, 2, 3], [
+      2, 1, 3, 2], [2, 2, 3, 3]]) == [1, 1, 5, 3])
+print(solution(100, 97, [[1, 1, 100, 97]]) == [1])
+
+
+
+
+
+
