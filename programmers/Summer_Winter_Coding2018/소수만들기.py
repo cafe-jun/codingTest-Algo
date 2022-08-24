@@ -22,5 +22,4 @@ def is_prime_route(x):
 
 
 print(solution([1, 2, 3, 4]) == 1)
-
 print(solution([1, 2, 7, 6, 4]) == 4)
