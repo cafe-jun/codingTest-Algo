@@ -1,0 +1,3 @@
+input().split()
+
+print()
