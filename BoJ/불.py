@@ -29,30 +29,30 @@ dx = [1, -1, 0, 0]
 visited = []
 visited.append((start[0], start[1]))
 turn_cost = 0
-# while q:
-#     y, x, cost = q.popleft()
-#     if matrix[y][x] == 'O':
-#         answer = min(cost, answer)
-#         continue
-#     for i in range(4):
-#         ny = y + dy[i]
-#         nx = x + dx[i]
-#         if 0 <= ny <= c+1 and 0 <= nx <= r+1:
-#             if (matrix[ny][nx] == '.' or matrix[ny][nx] == 'O') and (ny, nx) not in visited:
-#                 q.append((ny, nx, cost+1))
-#                 visited.append((ny, nx))
-#     if turn_cost == cost:
-#         tmp_fires = deque()
-#         while fires:
-#             a, b = fires.popleft()
-#             for i in range(4):
-#                 na = a + dy[i]
-#                 nb = b + dx[x]
-#                 if 0 <= na <= c+1 and 0 <= nb <= r+1:
-#                     if matrix[na][nb] == '.':
-#                         matrix[na][nb] = 'F'
-#                         tmp_fires.append((na, nb))
-#         fires = copy(tmp_fires)
+while q:
+    y, x, cost = q.popleft()
+    if matrix[y][x] == 'O':
+        answer = min(cost, answer)
+        continue
+    for i in range(4):
+        ny = y + dy[i]
+        nx = x + dx[i]
+        if 0 <= ny <= c+1 and 0 <= nx <= r+1:
+            if (matrix[ny][nx] == '.' or matrix[ny][nx] == 'O') and (ny, nx) not in visited:
+                q.append((ny, nx, cost+1))
+                visited.append((ny, nx))
+    if turn_cost == cost:
+        tmp_fires = deque()
+        while fires:
+            a, b = fires.popleft()
+            for i in range(4):
+                na = a + dy[i]
+                nb = b + dx[x]
+                if 0 <= na <= c+1 and 0 <= nb <= r+1:
+                    if matrix[na][nb] == '.':
+                        matrix[na][nb] = 'F'
+                        tmp_fires.append((na, nb))
+        fires = copy(tmp_fires)
 
 
 if answer == 1e9:
