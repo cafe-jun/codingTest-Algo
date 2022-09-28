@@ -23,38 +23,6 @@ def solution(msg):
         msg = msg[tt:]
     return answer
 
-# def solution(msg):
-#     answer = []
-#     keyword = dict()
-#     for i in range(26):
-#         keyword[chr(i+65)] = i+1
-#     max_cnt = 27
-#     w = ''
-#     key_q = deque(list(msg))
-#     dp = []
-#     c = ''
-#     while key_q:
-#         # 현재 입력 w
-#         # 다음 글자 c
-#         w += key_q.popleft()
-#         if len(key_q) > 0:
-#             c = key_q[0]
-#         else:
-#             c = ''
-
-#         if w+c not in dp:
-#             if w in keyword.keys():
-#                 answer.append(keyword[w])
-#                 keyword[w+c] = max_cnt
-#                 dp.append(w+c)
-#                 max_cnt += 1
-#                 w = ''
-#             else:
-#                 answer.append(keyword[w])
-#     if w != '':
-#         answer.append(keyword[w])
-#     return answer
-
 
 print(solution("KAKAO") == [11, 1, 27, 15])
 print(solution("TOBEORNOTTOBEORTOBEORNOT") == [
