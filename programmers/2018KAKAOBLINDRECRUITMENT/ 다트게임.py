@@ -3,19 +3,28 @@ def solution(dartResult: str):
     score = {"S": 1, "D": 2, "T": 3}
     option = {"*": 2, "#": -1}
     tmp_list = []
-    idx = -1
-    for result in dartResult:
-        if result.isnumeric() == True:
-            print('number')
-            tmp_list.append(int(result))
-            idx += 1
+    len_tmp = len(tmp_list)
+    num = ''
+    for idx,result in enumerate(dartResult):
+        if result.isnumeric():
+            num += result
         elif result in score.keys():
-            tmp_list[idx] += tmp_list[idx] ^ score[result]
+            # 숫자 끝 
+            tmp_list.append(int(num))
+            num = ''
+            tmp_list[-1] = tmp_list[-1] ** score[result]
         else:
-            tmp_list[idx-1]*option[result]
-
-    return answer
-
+            if result == "*":
+            # tmp_list 길이 확인 
+                if len(tmp_list) < 2:
+                    tmp_list[0] =tmp_list[0]*option[result]
+                else:
+                    tmp_list[-1] = tmp_list[-1]*option[result]
+                    tmp_list[-2] = tmp_list[-2]*option[result]
+            else:
+                tmp_list[-1] = tmp_list[-1]*option[result]
+                
+    return sum(tmp_list)
 
 print(solution("1S2D*3T") == 37)
 print(solution("1D2S#10S") == 9)
