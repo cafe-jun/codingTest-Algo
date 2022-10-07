@@ -4,6 +4,7 @@ class Stack:
     def __init__(self, max_size):
         self.size = max_size
 
+    
 
 def solution(s):
     stack = []
