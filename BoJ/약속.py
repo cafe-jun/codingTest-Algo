@@ -1,3 +1,4 @@
+# https://www.acmicpc.net/problem/1183
 n = int(input())
 m = []
 for _ in range(n):
