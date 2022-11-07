@@ -1,9 +1,20 @@
 # https://www.acmicpc.net/problem/1183
-n = int(input())
-m = []
-for _ in range(n):
-    m.append(map(int,input().split()))
-    
-print(m)
+import sys
 
-print('문제가 이해안된다')
+input = sys.stdin.readline
+
+n = int(input())
+numbers = list()
+for _ in range(n):
+    a, b = map(int, input().split())
+    numbers.append(b - a)
+numbers = sorted(numbers)
+
+if len(numbers) % 2 == 0:
+    start = len(numbers) // 2 - 1
+    answer = numbers[start + 1] - numbers[start] + 1
+else:
+    answer = 1
+
+print(answer)    
+
