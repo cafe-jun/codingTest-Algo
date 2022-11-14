@@ -1,0 +1,21 @@
+# https://www.acmicpc.net/problem/1183
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+numbers = list()
+for _ in range(n):
+    a, b = map(int, input().split())
+    numbers.append(b - a)
+numbers = sorted(numbers)
+
+if len(numbers) % 2 == 0:
+    start = len(numbers) // 2 - 1
+    answer = numbers[start + 1] - numbers[start] + 1
+else:
+    answer = 1
+
+print(answer)    
+
+print("문제추가")
