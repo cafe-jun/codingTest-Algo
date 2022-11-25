@@ -17,6 +17,6 @@ for _ in range(T):
         point_cases[-1].append(tuple(map(int,f.readline().split())))
     
 
-print('')
+
 # copy_g = deepcopy(graph)
 # graph = [[0 for _ in range(N)] for _ in range(M)]
