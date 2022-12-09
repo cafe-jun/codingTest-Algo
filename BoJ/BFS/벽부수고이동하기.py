@@ -20,11 +20,11 @@ dy = [0,0,1,-1]
 def bfs(matrix: list[int],break_cnt):
     q = deque()
     q.append((0,0,break_cnt))
-    matrix[0][0] = 1
+    matrix[0][0] = 2
     while q:
         x,y,br = q.popleft()
         if x == N-1 and y == M-1:
-            return matrix[x][y]
+            return matrix[x][y]-1
     
         for i in range(4):
             nx,ny = dx[i]+x,dy[i]+y
