@@ -10,7 +10,7 @@ N,M = map(int,f.readline().split())
 # N,M = map(int,input().split())
 matrix = [list(map(int,f.readline().strip())) for _ in range(N)]
 # matrix = [list(map(int,input().strip())) for _ in range(N)]
-       
+graph = []
           
     
 dx = [1,-1,0,0]
