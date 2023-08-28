@@ -5,43 +5,45 @@ def solution(board: list[str]):
     answer = 0
     dx = [1,0,-1,0]
     dy = [0,1,0,-1]
+    n = len(board)
+    m = len(board[0])
+    
+    
     q = deque()
-    goal = []
-    visied = []
-    for idx,b in enumerate(board):
-        for jdx,a in enumerate(b):
+    matrix = [[0 for _ in range(len(board[0]))] for _ in range(len(board))]
+    
+    for idx in range(len(board)):
+        for jdx in range(len(board[0])):
             if board[idx][jdx] == 'R':
-                q.append((idx,jdx,0))
-                visied.append((idx,jdx))
-                break
-        else:
-            break;
+                q.append((idx,jdx))
+                matrix[idx][jdx] = 1
 
     
     while q:
-        x,y,cnt = q.popleft()
+        x,y = q.popleft()
         if board[x][y] == 'G':
-            answer = cnt
-            break;
+            return matrix[x][y]-1
+            
         
         for i in range(4):
-            nx = dx[i]+x
-            ny = dy[i]+y
-            # 슬라이딩 
-            sliding = False
-            while 0<=nx<len(board) and 0<=ny<len(board[0]) and board[nx][ny] != 'D' and board[nx][ny] != 'G' and (nx,ny) not in visied:
-                temp_x = nx
-                temp_y = ny
-                
-                ny += dy[i]    
+            nx = x
+            ny = y
+            while True:
                 nx += dx[i]
-                sliding = True
-            else:
-                if sliding == True:
-                    q.append((temp_x,temp_y,cnt+1))
-                    visied.append((temp_x,temp_y))
+                ny += dy[i]
+                if nx < 0 or nx >= n or ny < 0 or ny >= m:
+                    nx -= dx[i]
+                    ny -= dy[i]
+                    break
+                if 0<=nx<n and 0<=ny<m and board[nx][ny] == 'D':
+                    nx -= dx[i]
+                    ny -= dy[i]
+                    break
             
-    return answer
+            if matrix[nx][ny] == 0:
+                matrix[nx][ny] = matrix[x][y]+1
+                q.append((nx,ny))
+    return -1
 
 
 

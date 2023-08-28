@@ -1,5 +1,5 @@
 
-def solution(sequence, k):
+def solution(sequence: list[int], k:list[int]):
     answer = []
     
     return answer
