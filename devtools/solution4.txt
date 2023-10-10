@@ -1,0 +1,33 @@
+
+
+1. INNER JOIN: 두 테이블 모두에서 일치하는 행만 반환
+SELECT column 
+FROM Table A 
+INNER JOIN Table B 
+ON A.Key = B.Key
+
+2. LEFT (OUTER) JOIN: 왼쪽 테이블의 모든 행과 오른쪽 테이블에서 일치하는 행을 반환합니다. 오른쪽 테이블에 일치하는 항목이 없으면 NULL 값을 반환
+SELECT column 
+FROM Table A 
+LEFT JOIN Table B 
+ON A.Key = B.Key
+
+3. 
+SELECT column 
+FROM Table A 
+RIGHT JOIN Table B 
+ON A.Key = B.Key
+WHERE B.Key IS NULL
+
+4. 
+SELECT column 
+FROM Table A 
+FULL OUTER JOIN Table B 
+ON A.Key = B.Key
+WHERE A.Key IS NULL OR B.Key IS NULL
+
+5.
+SELECT column 
+FROM Table A 
+FULL OUTER JOIN Table B 
+ON A.Key = B.Key
